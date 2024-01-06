@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link href="{% static 'fonts/Ramaraja-Regular.ttf'%}" rel="stylesheet" type="text/css" >
+        <title>.....</title>
+        <style>
+          *{
+            font-family: 'Ramaraja', serif;
+          }
+        </style>
+        <script src="https://cdn.tailwindcss.com/">
+        </script>
+
+    </head>
+    
+<body class="bg-orange-50">
+    <nav class="flex items-center justify-between flex-wrap  bg-teal-50 p-6 mt-0 fixed w-full z-10 top-0">
+        <div class="flex items-center flex-shrink-0 text-white mr-44">
+          <div class="">
+            <img src="{%static 'myadmin/2x/covid.png'%}"/>
+        </div>
+          {% comment %} <span class="italic text-4xl tracking-tight text-black underline decoration-dotted">Covid Tracker</span> {% endcomment %}
+        </div>
+        
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto ml-96 ">
+          <div class="text-sm lg:flex-grow">
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-800  mr-4 ">
+              Outbreak
+            </a>
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-sm text-orange-600 mr-4">
+              Vaccination
+            </a>
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-800 hover:text-orange-400">
+              Article
+            </a>
+        </div>
+        <div class="mr-96">
+        </div>
+        <div>
+        <select  name="countries" onchange="updatePage()" class="text-center text-teal-800 bg-teal-50" >
+          {% for x in countries_list%}
+          <option value="{{x}}">{{x}}</option>
+          {% endfor %}
+        </select>
+      </form>
+        </div>
+        </div>
+        </nav>
+        <div class="columns-2 mt-32 mr-6 ml-6">
+          <div class="w-auto h-auto bg-teal-600 p-9 rounded-lg ml-10 mr-10">
+           <p class="text-red-50 ml-60 text-3xl ">Cases
+             <img src="{%static 'myadmin/2x/outbrust.png'%}" class="inline"/>
+           </p>
+           <div class="columns-3 mt-6 ml-10">
+           <p class="text-red-50 text-2xl  ">{{total_cases}}</p> <p class="text-red-50 text-1xl ml-3">total cases</p>
+           <p class="text-red-50 text-2xl ">{{total_recovered}}</p> <p class="text-red-50 text-1xl ml-1">total recovered</p>
+           <p class="text-red-50 text-2xl ">{{total_deaths}}</p> <p class="text-red-50 text-1xl ml-1">total deaths</p>
+           </div>
+           <p class="text-white text-s mt-6 ml-8">Outbreak which started in in 2020 has affected the world population. The data in this analysis is till jan 2022. The pandemic has surged the world economically,poltically and mentally.<p>
+          </div>
+          <div class="w-auto h-auto bg-orange-700 p-9 rounded-lg ml-10 mr-10">
+            <p class="text-red-50 text-3xl ml-60 ">Vaccination
+              <img src="{%static 'myadmin/2x/vaccines.png'%}" class="inline"/>
+            </p>
+            <div class="columns-3 mt-6 ml-10">
+              <p class="text-red-50 text-2xl ">{{total_vaccinations}}</p> <p class="text-red-50 text-1xl ml-3">total vaccinations</p>
+              <p class="text-red-50 text-2xl ">{{total_full_vaccinations}}</p> <p class="text-red-50 text-1xl ml-3">fully vaccinated</p>
+              <p class="text-red-50 text-2xl ">{{total_half_vaccinations}}</p> <p class="text-red-50 text-1xl ml-3">half vaccinated</p>
+              </div>
+              <p class="text-white text-s mt-6 ml-10">Vaccination started in jan,2021.Total vaccinations is recoreded till march,2022. More than 190+ countries have started the vaccination drives.Still, the margin between fully vaccinated and partially vaccinated is significant. <p>
+          </div>
+        </div>
+        <div class="p-12 mt-4 ml-20">
+          {% autoescape off %}
+            {{plot_div}}
+          {% endautoescape %}
+        </div>
+        <div class="ml-52 mr-44">
+          <p class="text-teal-800 text-s"> It started on jan 23,2020 with around 600k cases. On feb 23, cases rose to 3.7m. The next peak came on april 14, when cases rose to 2.12m. August also had two similar peaks of 2.5m.On nov 14, it recorded highest peak since pandemic of 4.2m.
+        </div>
+        
+</body>
+</html>
